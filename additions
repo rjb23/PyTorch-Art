@@ -1,0 +1,37 @@
+##a pytorch art maker, based on the user's input on their 5  favorite colors, generate  image_size = 64 based on these users inputs and generate the image using pytorch
+##I have to work on getting the the input's random colors and generate an image based with just those colors.. This code does a version of that with not as many as I would like
+
+import torch
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Define the user's favorite colors
+favorite_colors = ['red', 'blue', 'green', 'purple', 'orange']
+
+# Define the size of the image
+image_size = 64
+
+# Create a tensor of size (3,) with the RGB values of the user's favorite color
+dot_colors = [torch.tensor([255, 0, 0]),  # red
+              torch.tensor([0, 0, 255]),  # blue
+              torch.tensor([0, 255, 0]),  # green
+              torch.tensor([128, 0, 128]),  # purple
+              torch.tensor([255, 165, 0])]  # orange
+
+# Create an empty tensor of size (3, 64, 64) to represent the image
+image = torch.zeros((3, image_size, image_size))
+
+# Generate the image
+for i in range(image_size):
+    for j in range(image_size):
+        # Add a tiny colored dot at this location with a random favorite color
+        if torch.rand(1) < 0.01:
+            dot_color = dot_colors[torch.randint(len(dot_colors), size=(1,)).item()]
+            image[:, i, j] = dot_color
+
+# Convert the tensor to a numpy array and transpose it to (image_size, image_size, 3)
+image = image.permute(1, 2, 0).numpy()
+
+# Display the image
+plt.imshow(image)
+plt.show()
