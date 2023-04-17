@@ -1,0 +1,131 @@
+import torch
+import matplotlib.pyplot as plt
+
+# create a tensor with random pixel values
+image = torch.rand((100,100,3))
+
+# plot the image
+plt.imshow(image)
+plt.show()
+import torch
+import matplotlib.pyplot as plt
+
+# create a tensor with random pixel values
+image = torch.rand((100,100,3))
+
+# plot the image
+plt.imshow(image)
+plt.show()
+
+## new image
+import torch
+import matplotlib.pyplot as plt
+
+# create a tensor with 0's and 1's
+checkerboard = torch.zeros((100,100))
+checkerboard[::2,1::2] = 1
+checkerboard[1::2,::2] = 1
+
+# plot the image
+plt.imshow(checkerboard, cmap='gray')
+plt.show()
+
+##  New image
+
+import torch
+import matplotlib.pyplot as plt
+
+# create a tensor with values ranging from 0 to 1
+gradient = torch.linspace(0, 1, 100).repeat(100,1)
+
+# plot the image
+plt.imshow(gradient, cmap='gray')
+plt.show()
+
+
+
+## new image
+
+import torch
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Set the dimensions of the image
+width = 256
+height = 256
+
+# Create an empty tensor to hold the image data
+image_data = torch.zeros((height, width, 3), dtype=torch.float32)
+
+# Generate random color dots
+num_dots = 5000
+dot_positions = torch.randint(0, width, (num_dots, 2))
+dot_colors = torch.rand((num_dots, 3))
+
+# Place the dots in the image
+for i in range(num_dots):
+    x, y = dot_positions[i]
+    image_data[x, y, :] = dot_colors[i]
+
+# Convert the tensor to a NumPy array and display the image
+image_array = image_data.numpy()
+plt.imshow(image_array)
+plt.show()
+
+
+
+## new image
+
+import torch
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Define the size of the image
+image_size = 64
+
+# Create a tensor of zeros with the dimensions of the image
+image = torch.zeros(image_size, image_size, 3)
+
+# Iterate over the pixels of the image
+for i in range(image_size):
+    for j in range(image_size):
+        # Generate a random RGB color for the pixel
+        color = torch.rand(3)
+        # Set the color of the pixel
+        image[i, j] = color
+
+# Convert the tensor to a numpy array and plot the image
+plt.imshow(image.numpy())
+plt.show()
+
+
+##new image(s)
+
+import torch
+import matplotlib.pyplot as plt
+
+# Set image size
+image_size = 64
+
+# Define function to generate random dot image
+def generate_dot_image():
+    # Create a tensor of zeros for the image
+    image = torch.zeros((3, image_size, image_size))
+    # Generate random coordinates for the dots
+    x = torch.randint(low=0, high=image_size, size=(10,))
+    y = torch.randint(low=0, high=image_size, size=(10,))
+    # Generate random colors for the dots
+    colors = torch.rand((10, 3))
+    # Set the pixels corresponding to the dots to the random colors
+    for i in range(10):
+        image[:, x[i], y[i]] = colors[i]
+    return image
+
+# Generate and display 5 random dot images
+for i in range(5):
+    image = generate_dot_image()
+    plt.imshow(image.permute(1, 2, 0))
+    plt.show()
+    
+
+
